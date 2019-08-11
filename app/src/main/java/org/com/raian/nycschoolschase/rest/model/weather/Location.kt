@@ -19,7 +19,7 @@ class Location {
     var lat: Double? = null
     @SerializedName("lon")
     @Expose
-    var lon: Long? = null
+    var lon: Double? = null
     @SerializedName("tz_id")
     @Expose
     var tzId: String? = null
