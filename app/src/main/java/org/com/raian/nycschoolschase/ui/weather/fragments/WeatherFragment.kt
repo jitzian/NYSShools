@@ -12,10 +12,10 @@ import org.com.raian.nycschoolschase.R
 import org.com.raian.nycschoolschase.ui.base.BaseFragment
 import org.com.raian.nycschoolschase.ui.weather.viewmodel.LocationViewModel
 import org.com.raian.nycschoolschase.ui.viewmodels.ViewModelFactory
+import org.com.raian.nycschoolschase.util.safeLet
 import java.util.logging.Logger
 
 class WeatherFragment : BaseFragment() {
-
     private lateinit var mTextViewRegionValue: TextView
     private lateinit var mTextViewTemperatureValue: TextView
     private lateinit var mImageViewWeatherIcon: ImageView
@@ -38,12 +38,12 @@ class WeatherFragment : BaseFragment() {
     }
 
     override fun initView() {
-        locationViewModel.getRemoteData("Columbus")
-
-        mImageViewWeatherIcon = rootView.findViewById(R.id.mImageViewWeatherIcon)
-        mTextViewRegionValue = rootView.findViewById(R.id.mTextViewRegionValue)
-        mTextViewTemperatureValue = rootView.findViewById(R.id.mTextViewTemperatureValue)
-
+        safeLet(arguments?.getDouble("latitude"), arguments?.getDouble("longitude")) { lat, long ->
+            locationViewModel.getRemoteData("$lat,$long")
+            mImageViewWeatherIcon = rootView.findViewById(R.id.mImageViewWeatherIcon)
+            mTextViewRegionValue = rootView.findViewById(R.id.mTextViewRegionValue)
+            mTextViewTemperatureValue = rootView.findViewById(R.id.mTextViewTemperatureValue)
+        }
     }
 
     override fun onResume() {
