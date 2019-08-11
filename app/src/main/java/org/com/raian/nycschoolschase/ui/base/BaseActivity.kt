@@ -1,13 +1,13 @@
 package org.com.raian.nycschoolschase.ui.base
 
 import android.content.IntentFilter
+import android.location.Location
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationRequest
 import com.google.android.material.snackbar.Snackbar
 import org.com.raian.nycschoolschase.R
-import org.com.raian.nycschoolschase.ui.schools.viewmodel.SchoolsViewModel
-import org.com.raian.nycschoolschase.ui.viewmodels.ViewModelFactory
 import org.com.raian.nycschoolschase.util.network.NetworkReceiver
 import java.util.logging.Logger
 
@@ -17,9 +17,13 @@ abstract class BaseActivity : AppCompatActivity(), NetworkReceiver.NetworkListen
     private lateinit var mSnackBar: Snackbar
     private lateinit var networkReceiver: NetworkReceiver
 
-    internal val schoolsViewModel by lazy {
-        ViewModelProviders.of(this, ViewModelFactory(this)).get(SchoolsViewModel::class.java)
-    }
+    //Location
+    protected var mFusedLocationProviderClient: FusedLocationProviderClient? = null
+    protected val INTERVAL: Long = 2000
+    protected val FASTEST_INTERVAL: Long = 1000
+    protected lateinit var mLastLocation: Location
+    protected lateinit var mLocationRequest: LocationRequest
+    protected val REQUEST_PERMISSION_LOCATION = 10
 
     abstract fun initViews()
 
