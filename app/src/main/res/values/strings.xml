@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">NYCSchools</string>
+    <dimen name="size16dp">16dp</dimen>
+    <string name="NoConnectivityMessage">There is no Connectivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

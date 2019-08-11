@@ -1,0 +1,93 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "org.com.raian.nycschoolschase"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //noinspection GradleDependency,GradleCompatible
+    implementation "androidx.appcompat:appcompat:${deps.androidxAppCompat}"
+
+    implementation "androidx.legacy:legacy-support-v4:${deps.androidXLegacySupportVersionLib}"
+    implementation "com.google.android.material:material:${deps.androidMaterialVersionLib}"
+    implementation "androidx.constraintlayout:constraintlayout:${deps.androidXConstraintLayoutVersionLib}"
+    testImplementation "junit:junit:${deps.jUnitVersionLib}"
+    androidTestImplementation "androidx.test:runner:${deps.testRunner}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${deps.androidXEspressoCoreVersionLib}"
+
+    //Picasso
+    implementation "com.squareup.picasso:picasso:${deps.picassoVersionLib}"
+
+    //Mockito
+    testImplementation "org.mockito:mockito-core:${deps.mockitoCoreVersionLib}"
+    testImplementation "com.nhaarman:mockito-kotlin:${deps.nhaarmanMockitoVersionLib}"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${deps.retrofitVersionLib}"
+    implementation "com.squareup.retrofit2:converter-gson:${deps.gsonVersionLib}"
+
+    //Interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+}
+
+// LiveData & ViewModel
+dependencies {
+    implementation "android.arch.lifecycle:extensions:${deps.lifecycleVersionLib}"
+}
+
+//Room
+dependencies {
+    implementation "androidx.room:room-runtime:${deps.roomVersion}"
+    implementation "androidx.room:room-coroutines:2.1.0-alpha04"
+    kapt "android.arch.persistence.room:compiler:${deps.roomVersion}"
+}
+
+//Dagger2
+dependencies {
+    implementation "com.google.dagger:dagger:${deps.daggerVersionLib}"
+    kapt "com.google.dagger:dagger-compiler:${deps.daggerVersionLib}"
+
+    implementation "com.google.dagger:dagger-android:${deps.daggerVersionLib}"
+    implementation "com.google.dagger:dagger-android-support:${deps.daggerVersionLib}"
+
+    kapt "com.google.dagger:dagger-android-processor:${deps.daggerVersionLib}"
+}
+
+//Kotlin Coroutines
+dependencies {
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${deps.coroutinesVersionLib}"
+}
+
+dependencies {
+    //RecyclerView and CardView
+    //noinspection GradleDependency
+    implementation "androidx.recyclerview:recyclerview:${deps.androidXRecyclerViewVersionLib}"
+}
+
+//Google Maps
+dependencies {
+    implementation "com.google.android.gms:play-services-maps:${deps.googleMapsVersionLib}"
+}
+
+dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:+'
+}
