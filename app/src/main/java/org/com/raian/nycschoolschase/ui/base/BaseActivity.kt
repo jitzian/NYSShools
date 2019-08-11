@@ -1,9 +1,14 @@
 package org.com.raian.nycschoolschase.ui.base
 
+import android.Manifest
+import android.content.Context
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.location.Location
 import android.net.ConnectivityManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.material.snackbar.Snackbar
@@ -52,6 +57,25 @@ abstract class BaseActivity : AppCompatActivity(), NetworkReceiver.NetworkListen
     override fun onDestroy() {
         super.onDestroy().also {
             viewModelStore.clear()
+        }
+    }
+
+    protected fun checkPermissionForLocation(context: Context): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED
+            ) {
+                true
+            } else {
+                // Show the permission request
+                ActivityCompat.requestPermissions(
+                    this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    REQUEST_PERMISSION_LOCATION
+                )
+                false
+            }
+        } else {
+            true
         }
     }
 }

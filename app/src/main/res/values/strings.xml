@@ -6,5 +6,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="message_gps_not_enabled">Your GPS seems to be disabled, do you want to enable it?</string>
-    <string name="message_Yes">YES</string>
+    <string name="message_yes">YES</string>
+    <string name="message_no">NO</string>
+    <string name="message_permission_denied">Permission Denied</string>
+    <string name="message_data_not_available">Data Not available</string>
 </resources>
