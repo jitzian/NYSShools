@@ -49,8 +49,8 @@ class MainActivity : BaseActivity(), NetworkReceiver.NetworkListener {
                 logger.info("$TAG::getNetworkStatus::YES::$isConnected")
                 supportFragmentManager
                     .beginTransaction()
-                    .add(R.id.mFrameLayoutWeatherContainer, WeatherFragment(), WeatherFragment::class.java.simpleName)
-                    .add(R.id.mFrameLayoutSchoolsContainer, SchoolsFragment(), SchoolsFragment::class.java.simpleName)
+                    .replace(R.id.mFrameLayoutWeatherContainer, WeatherFragment(), WeatherFragment::class.java.simpleName)
+                    .replace(R.id.mFrameLayoutSchoolsContainer, SchoolsFragment(), SchoolsFragment::class.java.simpleName)
                     .commit()
 
                 mLocationRequest = LocationRequest()
@@ -142,8 +142,8 @@ class MainActivity : BaseActivity(), NetworkReceiver.NetworkListener {
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.mFrameLayoutWeatherContainer, weatherFragment, WeatherFragment::class.java.simpleName)
-            .add(R.id.mFrameLayoutSchoolsContainer, SchoolsFragment(), SchoolsFragment::class.java.simpleName)
+            .replace(R.id.mFrameLayoutWeatherContainer, weatherFragment, WeatherFragment::class.java.simpleName)
+            .replace(R.id.mFrameLayoutSchoolsContainer, SchoolsFragment(), SchoolsFragment::class.java.simpleName)
             .commit()
 
     }
